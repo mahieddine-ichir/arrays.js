@@ -1,0 +1,116 @@
+<html>
+<head>
+
+	<script src="arrays.js"></script>
+	<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+	<h4>Apply</h4>
+	<pre id="apply">
+		var array = [
+			{name: "Google", url: "http://www.google.com"},
+			{name: "Yahoo", url: "http://www.yahoo.com"}
+		];
+		&lt;ul id="list"/&gt;
+		Arrays.apply(array, function(xi, i, n) {
+			$("#list").append('&lt;li&gt;&lt;a href="'+xi.url+'"&gt;'+xi.name+'&lt;/a&gt;&lt;/li&gt;');
+		});
+
+		<ul id="list"/>
+	</pre>
+
+	<h4>Range</h4>
+	<pre id="range">
+		var x = Arrays.range(3, 10);
+	</pre>
+
+	<h4>Filling</h4>
+	<pre id="fills">
+		var y = Arrays.fill(7, function(i, n) {
+			return i*i;
+		});
+	</pre>
+
+	<h4>Transform</h4>
+	<pre id="transforms">
+		var z = Arrays.transform(y, function(input) {
+			return input / 2.0;
+		});
+	</pre>
+	<h4>Filtering</h4>
+	<pre id="filters">
+		var q = Arrays.filter(z, function(input) {
+			return input >= 5;
+		});
+	</pre>
+	<h4>Aggregation</h4>
+	<pre id="aggregates">
+		var ag = Arrays.aggregate(q, 0, function(a, xi, i) {
+			return a + xi;
+		});
+	</pre>
+	<h4>Search</h4>
+	<pre id="finds">
+		var f = Arrays.find(q, function(xi, i) {
+			return xi >= 10;
+		});
+	</pre>
+
+    <script src="../../jquery/jquery-1.11.0.min.js"></script>
+    <script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+	    $(document).ready(function() {
+
+			// apply
+	    	var array = [
+				{name: "Google", url: "http://www.google.com"},
+				{name: "Yahoo", url: "http://www.yahoo.com"}
+			];
+			Arrays.apply(array, function(xi, i, n) {
+				$("#list").append('<li><a href="'+xi.url+'">'+xi.name+'</a></li>');
+			});
+
+	    	var x = Arrays.range(3, 10);
+	    	Arrays.apply(x, function(xi, i, n) {
+	    		$("#range").append(xi+' ');
+	    	});
+
+	    	var y = Arrays.fill(7, function(i, n) {
+	    		return i*i;
+	    	});
+	    	Arrays.apply(y, function(xi, i, n) {
+	    		$("#fills").append(xi+' ');
+	    	});
+
+	    	var z = Arrays.transform(y, function(input) {
+	    		return input / 2.0;
+	    	});
+			Arrays.apply(z, function(xi, i, n) {
+	    		$("#transforms").append(xi+' ');
+	    	});
+
+	    	// Filtering
+	    	var q = Arrays.filter(z, function(input) {
+	    		return input >= 5.0;
+	    	});
+	    	Arrays.apply(q, function(xi, i, n) {
+				$("#filters").append(xi+' ');
+	    	});
+
+			var ag = Arrays.aggregate(q, 0, function(a, xi, i) {
+				return a + xi;
+			});
+			$("#aggregates").append(ag);
+
+			var f = Arrays.find(q, function(xi, i) {
+				return xi >= 10;
+			});
+			$("#finds").append(f);
+	    });
+	</script>
+
+</body>
+</html>
